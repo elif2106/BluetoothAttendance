@@ -1,0 +1,37 @@
+﻿@model NetBluSchool.Models.BluethoothSearchView
+@{
+    ViewBag.Title = "SearchStudent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2 style="text-align:center;margin-bottom: 20px">@Model.LessonId Ders Yoklama</h2>
+<hr />
+@if (Model.BluList.Count > 0)
+{
+    <table style="width:100%">
+        <tr>
+            <th>Sayac</th>
+            <th>Bluetooth Adi</th>
+        </tr>
+        @foreach (var item in Model.BluList)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+            </tr>
+        }
+    </table>
+    <form action="/Teacher/SaveStudents" method="post">
+        <input type="hidden" id="lessonId" name="lessonId" value="@Model.LessonId">
+        <button type="button" class="btn-primary" onclick=" window.print()"> Çıktı Al! </button><br /><br />
+        <script>document.write(Date()); </script>
+    </form>
+}
+else
+{
+    <h3 style="text-align:center;margin-bottom: 20px">OGRENCI BULUNAMADI</h3>
+}
+
+
+
+
